@@ -15,7 +15,7 @@ export default function Sidebar(){
   </li>
 {tags.map((tag) => {
 return(
-    <li className={css.menuItem}>
+    <li key={tag} className={css.menuItem}>
     <a href={`/notes/filter/${tag}`} className={css.menuLink}>
       {tag}
     </a>
