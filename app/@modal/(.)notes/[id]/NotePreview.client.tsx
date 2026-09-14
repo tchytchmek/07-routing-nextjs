@@ -7,7 +7,7 @@ import css from "./NotePreview.module.css";
 import Modal from "@/components/Modal/Modal";
 
 export default function NotePreviewClient() {
-  const data = useParams();
+  const data = useParams<{ id: string }>();
   const router = useRouter();
   const id = data.id as string;
 
@@ -37,6 +37,12 @@ export default function NotePreviewClient() {
             <div className={css.item}>
               <div className={css.header}>
                 <h2>{note.title}</h2>
+                <button
+                type="button"
+                className={css.backBtn}
+                onClick={handleClose}
+                aria-label="Close modal"
+              >×</button>
               </div>
               <p className={css.tag}>{note.tag}</p>
               <p className={css.content}>{note.content}</p>
