@@ -1,0 +1,28 @@
+import css from './SidebarNotes.module.css'
+
+
+export default function Sidebar(){
+
+    const tags = ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'];
+
+    return (
+        <ul className={css.menuList}>
+  {/* список тегів */}
+  <li className={css.menuItem}>
+    <a href={`/notes/filter/all`} className={css.menuLink}>
+      All notes
+    </a>
+  </li>
+{tags.map((tag) => {
+return(
+    <li className={css.menuItem}>
+    <a href={`/notes/filter/${tag}`} className={css.menuLink}>
+      {tag}
+    </a>
+  </li>
+)
+})}
+</ul>
+
+    )
+}

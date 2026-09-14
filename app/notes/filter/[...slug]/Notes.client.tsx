@@ -12,16 +12,18 @@ import { useDebounce } from "use-debounce";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import Loader from "@/components/Loader/Loader";
 import NoteForm from "@/components/NoteForm/NoteForm";
-
-function NotesClient() {
+interface NotesClientProps{
+  tag: string,
+}
+function NotesClient({ tag } : NotesClientProps ) {
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [text, setText] = useState("");
   const [debouncedSearch] = useDebounce(text, 500);
 
   const { data, isError , isLoading } = useQuery({
-    queryKey: ["notes", currentPage, debouncedSearch],
-    queryFn: () => fetchNotes(currentPage, debouncedSearch),
+    queryKey: ["notes", currentPage, debouncedSearch, tag],
+    queryFn: () => fetchNotes(currentPage, debouncedSearch , tag),
     placeholderData: keepPreviousData,
   });
   const totalPages = data?.totalPages ?? 1;

@@ -7,7 +7,7 @@ interface NotesQuery{
  notes: Note[],
  totalPages: number,
 }
-export async function fetchNotes(page : number , text: string) : Promise<NotesQuery>{
+export async function fetchNotes(page : number , text: string, tag?: string) : Promise<NotesQuery>{
     const { data } = await axios.get<NotesQuery>(url, {
         headers: {
             Authorization: `Bearer ${authToken}`,
@@ -16,6 +16,7 @@ export async function fetchNotes(page : number , text: string) : Promise<NotesQu
             page: page,
             perPage: 12,
             search: text,
+            tag: tag === 'all' ? undefined : tag,
         }
     })
     return data;
